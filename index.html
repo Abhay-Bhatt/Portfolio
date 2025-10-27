@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhay Bhatt | Portfolio</title>
+  <link rel="icon" href="photo.jpg" type="image/png">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #eaeaea;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: #1de9b6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 15, 15, 0.9);
+      padding: 0.7rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #00bcd4;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      font-weight: 500;
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+    }
+
+    nav ul li a:hover {
+      background: #00bcd4;
+      color: #111;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      background: none;
+      border: 2px solid #00bcd4;
+      color: #00bcd4;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: #00bcd4;
+      color: #111;
+    }
+
+    section {
+      padding: 70px 8%;
+      min-height: 80vh;
+    }
+
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 90vh;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    }
+
+    #home h1 {
+      font-size: 2.8rem;
+      color: #00bcd4;
+      margin-bottom: 10px;
+    }
+
+    #home h2 {
+      font-weight: 400;
+      color: #aaa;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 10px 25px;
+      background: #00bcd4;
+      color: #111;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #1de9b6;
+      box-shadow: 0 0 15px rgba(29, 233, 182, 0.6);
+    }
+
+    #about {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    #about img {
+      width: 220px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0,188,212,0.4);
+    }
+
+    #about .content {
+      max-width: 600px;
+    }
+
+    #about h2 {
+      color: #00bcd4;
+      margin-bottom: 15px;
+    }
+
+    #about p {
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    #skills h2,
+    #projects h2,
+    #resume h2,
+    #contact h2 {
+      text-align: center;
+      color: #00bcd4;
+      margin-bottom: 25px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .skill {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .skill:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 1rem;
+      transition: transform 0.3s;
+      box-shadow: 0 0 10px rgba(0,188,212,0.2);
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    #resume {
+      text-align: center;
+      background: #111;
+      border-radius: 10px;
+      padding: 50px 10%;
+      margin-top: 30px;
+    }
+
+    #resume p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    #contact {
+      text-align: center;
+    }
+
+    .contact-info {
+      color: #ccc;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    body.light {
+      background: #f5f5f5;
+      color: #111;
+    }
+    body.light nav {
+      background: rgba(255,255,255,0.9);
+    }
+    body.light .skill,
+    body.light .project {
+      background: #fff;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav>
+    <div class="logo">Abhay Bhatt</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle">☀️ Light</button>
+  </nav>
+
+  <!-- ===== Home ===== -->
+  <section id="home" data-aos="fade-up">
+    <h1>Hi, I'm Abhay Bhatt 👋</h1>
+    <h2>Engineering Student | Software Developer | Web Enthusiast</h2>
+    <button class="btn" onclick="window.location='#projects'">View My Work</button>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" data-aos="fade-up">
+    <img src="photo.jpg" alt="Abhay Bhatt">
+    <div class="content">
+      <h2>About Me</h2>
+      <p>
+        I’m a passionate software developer currently in my final year of B.Tech. 
+        I love building efficient, user-friendly applications and exploring new technologies.
+        My expertise includes C++, Java, Python, Web Development, and Data Structures & Algorithms.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Skills ===== -->
+  <section id="skills" data-aos="fade-right">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill">C++</div>
+      <div class="skill">Java</div>
+      <div class="skill">Python</div>
+      <div class="skill">HTML / CSS / JS</div>
+      <div class="skill">SQL</div>
+      <div class="skill">DSA</div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects" data-aos="fade-left">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <img src="cli.png" alt="Universal CLI">
+        <h3>Universal CLI</h3>
+        <p>
+          A cross-platform command-line interface tool for file operations, log monitoring,  
+          and regex-based search. Built with Python, Click, and Multiprocessing for efficient  
+          file handling and modular plug-in extensions.
+        </p>
+      </div>
+
+      <div class="project">
+        <img src="app.jpeg" alt="Expense Tracker">
+        <h3>Expense Tracker App</h3>
+        <p>
+          Android-based personal finance manager built using Kotlin, Firebase, and MVVM architecture.  
+          Features include secure authentication, cloud sync, charts, and real-time Firestore updates.
+        </p>
+      </div>
+
+      <div class="project">
+        <img src="stock.jpg" alt="Stock Price Predictor">
+        <h3>Stock Price Prediction System</h3>
+        <p>
+          Machine learning system using Linear Regression, Random Forest, and LSTM models  
+          to predict stock prices with 92% accuracy. Includes data visualization dashboards  
+          using Matplotlib and Seaborn.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Resume Section ===== -->
+  <section id="resume" data-aos="zoom-in">
+    <h2>My Resume</h2>
+    <p>Want to know more about my experience and achievements? You can view or download my resume below:</p>
+    <a href="resume.pdf" target="_blank" class="btn">📄 View Resume</a>
+    <a href="resume.pdf" download class="btn" style="margin-left:10px;">⬇️ Download Resume</a>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Me</h2>
+    <p class="contact-info">📧 <a href="mailto:bhattabhay19@gmail.com">bhattabhay19@gmail.com</a></p>
+    <p class="contact-info">📞 <a href="tel:+918923989353">+91-8923989353</a></p>
+    <p class="contact-info">🔗 <a href="https://www.linkedin.com/in/abhay-bhatt/" target="_blank">LinkedIn</a> |
+       💻 <a href="https://github.com/Abhay-Bhatt" target="_blank">GitHub</a> |
+       🧠 <a href="https://leetcode.com/u/Abhay000/" target="_blank">LeetCode</a>
+    </p>
+  </section>
+
+  <footer>© 2025 Abhay Bhatt | Built with 💙 using HTML, CSS & JavaScript</footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      themeToggle.textContent = document.body.classList.contains("light")
+        ? "🌙 Dark"
+        : "☀️ Light";
+    });
+  </script>
+</body>
+</html>
